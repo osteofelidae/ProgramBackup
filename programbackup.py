@@ -1,3 +1,5 @@
+# NO DOCUMENTATION WOOHOO
+
 import tkinter as tk
 from tkinter import filedialog
 import datetime
@@ -50,9 +52,10 @@ def backup():
 
 window.geometry("750x185")
 window.title("Program Backup Tool")
+window.iconbitmap("icon.ico")
 
 title = tk.Label(text="Program backup tool", font=("Arial", 25))
-subtitle = tk.Label(text="By Osteofelidae", font=("Arial", 10))
+subtitle = tk.Label(text="Made with PRIDE by Osteofelidae", font=("Arial", 10))
 
 browseSourceButton = tk.Button(window, command=fileBrowseSource, text="Choose source directory", height=1, width=30)
 browseToButton = tk.Button(window, command=fileBrowseTo, text="Choose directory to backup to", height=1, width=30)
