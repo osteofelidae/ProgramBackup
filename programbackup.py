@@ -3,7 +3,6 @@ from tkinter import filedialog
 import datetime
 import os
 import shutil
-import subprocess
 
 window = tk.Tk()
 
@@ -49,7 +48,7 @@ def backup():
     else:
         tk.messagebox.showerror(title="Error", message="Unknown error. Oopsies!")
 
-window.geometry("750x250")
+window.geometry("750x185")
 window.title("Program Backup Tool")
 
 title = tk.Label(text="Program backup tool", font=("Arial", 25))
@@ -59,22 +58,22 @@ browseSourceButton = tk.Button(window, command=fileBrowseSource, text="Choose so
 browseToButton = tk.Button(window, command=fileBrowseTo, text="Choose directory to backup to", height=1, width=30)
 backupButton = tk.Button(window, command=backup, text="BACKUP", height=1, width=30)
 
-title.place(x=0, y=0)
-subtitle.place(x=0, y=40)
+title.place(x=10, y=0)
+subtitle.place(x=10, y=40)
 
-browseSourceButton.place(x=0, y=80)
+browseSourceButton.place(x=10, y=80)
 
 textFrom = tk.Label(text=sourceDir, font=("Arial", 10))
-textFrom.place(x=230, y=83)
+textFrom.place(x=240, y=83)
 
-browseToButton.place(x=0, y=110)
+browseToButton.place(x=10, y=110)
 
 textTo = tk.Label(text=toDir, font=("Arial", 10))
-textTo.place(x=230, y=113)
+textTo.place(x=240, y=113)
 
-backupButton.place(x=0, y=150)
+backupButton.place(x=10, y=150)
 
 textBackup = tk.Label(text=backupState, font=("Arial", 10))
-textBackup.place(x=230, y=153)
+textBackup.place(x=240, y=153)
 
 window.mainloop()
