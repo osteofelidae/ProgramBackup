@@ -14,7 +14,7 @@ backupState = "No backups this session"
 
 # Constant definitions
 LEFTX = 10
-RIGHTX = 210
+RIGHTX = 214
 TEXTCOLOR = "#FFFFFF"
 BGCOLOR = "#111111"
 BUTTONBGCOLOR = "#333333"
@@ -89,7 +89,7 @@ subtitle = tk.Label(text="Made with pride by Osteofelidae", font=(FONT, 10), bg=
 subtitle.place(x=LEFTX + 30, y=45)
 
 # 'Browse for source' button
-browseSourceButton = tk.Button(window, command=fileBrowseSource, text="Choose source directory", width = 25) 
+browseSourceButton = tk.Button(window, command=fileBrowseSource, text="Choose source directory", width = 27) 
 browseSourceButton.place(x=LEFTX, y=80)
 BROWSESOURCEBUTTONSTYLE = {"borderwidth": "0", "fg":TEXTCOLOR, "bg": BUTTONBGCOLOR, "activebackground": "#261161", 'activeforeground':TEXTCOLOR}
 browseSourceButton.configure(**BROWSESOURCEBUTTONSTYLE)
@@ -99,7 +99,7 @@ textFrom = tk.Label(text=sourceDir, font=(FONT, 10), bg=BGCOLOR, fg=TEXTCOLOR)
 textFrom.place(x=RIGHTX, y=80)
 
 # 'Browse for dest' button
-browseToButton = tk.Button(window, command=fileBrowseTo, text="Choose directory to backup to", width = 25)
+browseToButton = tk.Button(window, command=fileBrowseTo, text="Choose directory to backup to", width = 27)
 browseToButton.place(x=LEFTX, y=110)
 BROWSETOBUTTONSTYLE = {"borderwidth": "0", "fg":TEXTCOLOR, "bg": BUTTONBGCOLOR, "activebackground": "#3F0071", 'activeforeground':TEXTCOLOR}
 browseToButton.configure(**BROWSETOBUTTONSTYLE)
@@ -109,7 +109,7 @@ textTo = tk.Label(text=toDir, font=(FONT, 10), bg=BGCOLOR, fg=TEXTCOLOR)
 textTo.place(x=RIGHTX, y=110)
 
 # 'Backup' button
-backupButton = tk.Button(window, command=backup, text="BACKUP", width = 25) 
+backupButton = tk.Button(window, command=backup, text="BACKUP", width = 27) 
 backupButton.place(x=LEFTX, y=150)
 BACKUPBUTTONSTYLE = {"borderwidth": "0", "fg":TEXTCOLOR, "bg": BUTTONBGCOLOR, "activebackground": "#FB2576", 'activeforeground':TEXTCOLOR}
 backupButton.configure(**BACKUPBUTTONSTYLE)
