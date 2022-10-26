@@ -1,19 +1,28 @@
-# NO DOCUMENTATION WOOHOO
-
+# Imports needed modules
 import tkinter as tk
-import tkinter.ttk as ttk
 from tkinter import filedialog
 import datetime
 import os
 import shutil
+import webbrowser
 
-window = tk.Tk()
-
+# Initial states of display variables
 lastPath = os.getcwd()
 sourceDir = "Not selected"
 toDir = "Not selected"
 backupState = "No backups this session"
 
+# Constant definitions
+LEFTX = 10
+RIGHTX = 210
+TEXTCOLOR = "#FFFFFF"
+BGCOLOR = "#111111"
+BUTTONBGCOLOR = "#333333"
+APPICON = "assets/icon.ico"
+MYICON = "assets/osteofelidae.png"
+FONT = "Bahnschrift"
+
+# Actions to be executed when 'browse for source' button is clicked
 def fileBrowseSource():
     global sourceDir
     global lastPath
@@ -23,7 +32,7 @@ def fileBrowseSource():
     textFrom['text'] = sourceDir
     lastPath = sourceDir
       
-
+# Actions to be executed when 'browse for dest' button is clicked
 def fileBrowseTo():
     global toDir
     global lastPath
@@ -33,6 +42,7 @@ def fileBrowseTo():
     textTo['text'] = toDir
     lastPath = toDir
     
+# Actions to be executed when 'backup' button is clicked
 def backup():
     global sourceDir
     global toDir
@@ -50,34 +60,63 @@ def backup():
         tk.messagebox.showerror(title="Error", message="Please select a directory to back up to first.")
     else:
         tk.messagebox.showerror(title="Error", message="Unknown error. Oopsies!")
+        
+# Actions to be executed when my icon is pressed
+def openGithub():
+    webbrowser.open('osteofelidae.github.io')
 
+# Window for application
+window = tk.Tk()
 window.geometry("750x185")
 window.title("Program Backup Tool")
-window.iconbitmap("icon.ico")
+window.iconbitmap(APPICON)
+window.configure(bg=BGCOLOR)
 
-title = tk.Label(text="Program backup tool", font=("Arial", 25))
-subtitle = tk.Label(text="Made with pride by Osteofelidae", font=("Arial", 10))
+# Title
+title = tk.Label(text="Program backup tool", font=(FONT, 25), bg=BGCOLOR, fg=TEXTCOLOR )
+title.place(x=LEFTX, y=0)
 
-browseSourceButton = ttk.Button(window, command=fileBrowseSource, text="Choose source directory", width = 30) 
-browseToButton = ttk.Button(window, command=fileBrowseTo, text="Choose directory to backup to", width = 30)
-backupButton = ttk.Button(window, command=backup, text="BACKUP", width = 30) 
+# Subtitle button
+MYICONIMAGE = tk.PhotoImage(file=MYICON)
+subtitleButton = tk.Button(window, command=openGithub, image=MYICONIMAGE, width = 25)
+subtitleButton.place(x=LEFTX, y=43)
+SUBTITLEBUTTONSTYLE = {"borderwidth": "0", "bg": BGCOLOR, "activebackground": BGCOLOR}
+subtitleButton.configure(**SUBTITLEBUTTONSTYLE)
 
-title.place(x=10, y=0)
-subtitle.place(x=10, y=40)
 
-browseSourceButton.place(x=10, y=80)
+# Subtitle
+subtitle = tk.Label(text="Made with pride by Osteofelidae", font=(FONT, 10), bg=BGCOLOR, fg=TEXTCOLOR)
+subtitle.place(x=LEFTX + 30, y=45)
 
-textFrom = tk.Label(text=sourceDir, font=("Arial", 10))
-textFrom.place(x=210, y=82)
+# 'Browse for source' button
+browseSourceButton = tk.Button(window, command=fileBrowseSource, text="Choose source directory", width = 25) 
+browseSourceButton.place(x=LEFTX, y=80)
+BROWSESOURCEBUTTONSTYLE = {"borderwidth": "0", "fg":TEXTCOLOR, "bg": BUTTONBGCOLOR, "activebackground": "#261161", 'activeforeground':TEXTCOLOR}
+browseSourceButton.configure(**BROWSESOURCEBUTTONSTYLE)
 
-browseToButton.place(x=10, y=110)
+# Text displaying source directory
+textFrom = tk.Label(text=sourceDir, font=(FONT, 10), bg=BGCOLOR, fg=TEXTCOLOR)
+textFrom.place(x=RIGHTX, y=80)
 
-textTo = tk.Label(text=toDir, font=("Arial", 10))
-textTo.place(x=210, y=112)
+# 'Browse for dest' button
+browseToButton = tk.Button(window, command=fileBrowseTo, text="Choose directory to backup to", width = 25)
+browseToButton.place(x=LEFTX, y=110)
+BROWSETOBUTTONSTYLE = {"borderwidth": "0", "fg":TEXTCOLOR, "bg": BUTTONBGCOLOR, "activebackground": "#3F0071", 'activeforeground':TEXTCOLOR}
+browseToButton.configure(**BROWSETOBUTTONSTYLE)
 
-backupButton.place(x=10, y=150)
+# Text displaying dest directory
+textTo = tk.Label(text=toDir, font=(FONT, 10), bg=BGCOLOR, fg=TEXTCOLOR)
+textTo.place(x=RIGHTX, y=110)
 
-textBackup = tk.Label(text=backupState, font=("Arial", 10))
-textBackup.place(x=210, y=152)
+# 'Backup' button
+backupButton = tk.Button(window, command=backup, text="BACKUP", width = 25) 
+backupButton.place(x=LEFTX, y=150)
+BACKUPBUTTONSTYLE = {"borderwidth": "0", "fg":TEXTCOLOR, "bg": BUTTONBGCOLOR, "activebackground": "#FB2576", 'activeforeground':TEXTCOLOR}
+backupButton.configure(**BACKUPBUTTONSTYLE)
 
+# Text displaying last backup time
+textBackup = tk.Label(text=backupState, font=(FONT, 10), bg=BGCOLOR, fg=TEXTCOLOR)
+textBackup.place(x=RIGHTX, y=150)
+
+# Run UI loop
 window.mainloop()
