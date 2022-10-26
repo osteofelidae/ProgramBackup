@@ -6,6 +6,8 @@ import os
 import shutil
 import webbrowser
 from playsound import playsound
+import threading
+
 
 # Initial states of display variables
 lastPath = os.getcwd()
@@ -57,18 +59,27 @@ def backup():
         shutil.copytree(sourceDir, path)
         backupState = "Last backed up at " + currTime.strftime("%c")
         textBackup['text'] = backupState
-        playsound(SUCCESSTONE, False)
+        soundThread = threading.Thread(target=playsound, args=(SUCCESSTONE,), daemon=True)
+        soundThread.start()
+        soundThread.join()
     elif sourceDir == "Not selected":
-        playsound(ERRORTONE, False)
+        soundThread = threading.Thread(target=playsound, args=(ERRORTONE,), daemon=True)
+        soundThread.start()
         tk.messagebox.showerror(title="Error", message="Please select a source directory first.")
+        soundThread.join()
+        
         
     elif toDir == "Not selected":
-        playsound(ERRORTONE, False)
+        soundThread = threading.Thread(target=playsound, args=(ERRORTONE,), daemon=True)
+        soundThread.start()
         tk.messagebox.showerror(title="Error", message="Please select a directory to back up to first.")
+        soundThread.join()
         
     else:
-        playsound(ERRORTONE, False)
+        soundThread = threading.Thread(target=playsound, args=(ERRORTONE,), daemon=True)
+        soundThread.start()
         tk.messagebox.showerror(title="Error", message="Unknown error. Oopsies!")
+        soundThread.join()
         
         
 # Actions to be executed when my icon is pressed
