@@ -5,6 +5,7 @@ import datetime
 import os
 import shutil
 import webbrowser
+from playsound import playsound
 
 # Initial states of display variables
 lastPath = os.getcwd()
@@ -21,6 +22,8 @@ BUTTONBGCOLOR = "#333333"
 APPICON = "assets/icon.ico"
 MYICON = "assets/osteofelidae.png"
 FONT = "Bahnschrift"
+ERRORTONE = lastPath + "/assets/error.wav"
+SUCCESSTONE = lastPath + "/assets/success.wav"
 
 # Actions to be executed when 'browse for source' button is clicked
 def fileBrowseSource():
@@ -54,12 +57,19 @@ def backup():
         shutil.copytree(sourceDir, path)
         backupState = "Last backed up at " + currTime.strftime("%c")
         textBackup['text'] = backupState
+        playsound(SUCCESSTONE, False)
     elif sourceDir == "Not selected":
+        playsound(ERRORTONE, False)
         tk.messagebox.showerror(title="Error", message="Please select a source directory first.")
+        
     elif toDir == "Not selected":
+        playsound(ERRORTONE, False)
         tk.messagebox.showerror(title="Error", message="Please select a directory to back up to first.")
+        
     else:
+        playsound(ERRORTONE, False)
         tk.messagebox.showerror(title="Error", message="Unknown error. Oopsies!")
+        
         
 # Actions to be executed when my icon is pressed
 def openGithub():
