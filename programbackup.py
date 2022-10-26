@@ -1,6 +1,7 @@
 # NO DOCUMENTATION WOOHOO
 
 import tkinter as tk
+import tkinter.ttk as ttk
 from tkinter import filedialog
 import datetime
 import os
@@ -55,11 +56,11 @@ window.title("Program Backup Tool")
 window.iconbitmap("icon.ico")
 
 title = tk.Label(text="Program backup tool", font=("Arial", 25))
-subtitle = tk.Label(text="Made with PRIDE by Osteofelidae", font=("Arial", 10))
+subtitle = tk.Label(text="Made with pride by Osteofelidae", font=("Arial", 10))
 
-browseSourceButton = tk.Button(window, command=fileBrowseSource, text="Choose source directory", height=1, width=30)
-browseToButton = tk.Button(window, command=fileBrowseTo, text="Choose directory to backup to", height=1, width=30)
-backupButton = tk.Button(window, command=backup, text="BACKUP", height=1, width=30)
+browseSourceButton = ttk.Button(window, command=fileBrowseSource, text="Choose source directory", width = 30) 
+browseToButton = ttk.Button(window, command=fileBrowseTo, text="Choose directory to backup to", width = 30)
+backupButton = ttk.Button(window, command=backup, text="BACKUP", width = 30) 
 
 title.place(x=10, y=0)
 subtitle.place(x=10, y=40)
@@ -67,16 +68,16 @@ subtitle.place(x=10, y=40)
 browseSourceButton.place(x=10, y=80)
 
 textFrom = tk.Label(text=sourceDir, font=("Arial", 10))
-textFrom.place(x=240, y=83)
+textFrom.place(x=210, y=82)
 
 browseToButton.place(x=10, y=110)
 
 textTo = tk.Label(text=toDir, font=("Arial", 10))
-textTo.place(x=240, y=113)
+textTo.place(x=210, y=112)
 
 backupButton.place(x=10, y=150)
 
 textBackup = tk.Label(text=backupState, font=("Arial", 10))
-textBackup.place(x=240, y=153)
+textBackup.place(x=210, y=152)
 
 window.mainloop()
